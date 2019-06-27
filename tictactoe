@@ -1,0 +1,60 @@
+import os
+test_board=['#','X','O','X','O','X','O','X','O','X']
+clean=[]
+#displaying board
+def display(test_board):
+    print ("displaying the board ")
+    print (test_board[1] + "|" + test_board[2] + "|" + test_board[3])
+    print ("------")
+    print (test_board[4] + "|" + test_board[5] + "|" + test_board[6])
+    print ("------")
+    print (test_board[7] + "|" + test_board[8] + "|" + test_board[9])
+
+display(test_board)
+def clean_board(test_board):
+    print (" clearing the board")
+    for i in range(1,len(test_board)):
+        test_board[i]=" "
+    print (test_board[1] + "|" + test_board[2] + "|" + test_board[3])
+    print ("------")
+    print (test_board[4] + "|" + test_board[5] + "|" + test_board[6])
+    print ("------")
+    print (test_board[7] + "|" + test_board[8] + "|" + test_board[9])
+
+clean_board(test_board)
+
+def win_or_draw(test_board,mark):
+    return ((test_board[7] == mark and test_board[8] == mark and test_board[9] == mark) or  # across the top
+     (test_board[4] == mark and test_board[5] == mark and test_board[6] == mark) or  # across the middle
+     (test_board[1] == mark and test_board[2] == mark and test_board[3] == mark) or  # across the bottom
+     (test_board[7] == mark and test_board[4] == mark and test_board[1] == mark) or  # down the middle
+     (test_board[8] == mark and test_board[5] == mark and test_board[2] == mark) or  # down the middle
+     (test_board[9] == mark and test_board[6] == mark and test_board[3] == mark) or  # down the right side
+     (test_board[7] == mark and test_board[5] == mark and test_board[3] == mark) or  # diagonal
+     (test_board[9] == mark and test_board[5] == mark and test_board[1] == mark))  # diagonal
+
+#First user input
+while True:
+    user_data=raw_input("enter data either X or O")
+    print user_data
+    if user_data not in ('X','O'):
+        print (" your data should be either X or O")
+        break
+    user_position=int(raw_input("enter position where data has to be inserted "))
+    test_board.insert(user_position,user_data)
+    if win_or_draw(test_board,user_data):
+        display(test_board)
+        print("congratulations you won the game")
+        break
+
+
+
+
+
+
+
+
+
+
+
+
